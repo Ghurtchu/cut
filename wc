@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ~/build-your-own-stuff/word-counter/
+
+scala ./wc.jar $1 $2
