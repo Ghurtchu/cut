@@ -5,12 +5,12 @@ import PartialFunction.condOpt
 sealed trait Delimiter { def repr: String }
 
 object Delimiter {
-  case object Comma extends Delimiter { override def repr: String = "," }
-  case object Tab extends Delimiter { override def repr: String = "\t" }
+  case object Comma extends Delimiter { override def repr: String = ","  }
+  case object Tab   extends Delimiter { override def repr: String = "\t" }
 
   def fromString: String => Option[Delimiter] =
     condOpt(_) {
-      case "," => Comma
+      case ","  => Comma
       case "\t" => Tab
     }
 

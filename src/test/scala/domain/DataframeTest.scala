@@ -5,7 +5,7 @@ import munit.FunSuite
 
 class DataframeTest extends FunSuite {
 
-  val col1 = Column(
+  val col1      = Column(
     Header("protein"),
     List(
       Cell(
@@ -18,7 +18,7 @@ class DataframeTest extends FunSuite {
       ),
     ),
   )
-  val col2 = Column(
+  val col2      = Column(
     Header("carbs"),
     List(
       Cell(
@@ -31,14 +31,14 @@ class DataframeTest extends FunSuite {
       ),
     ),
   )
-  val columns = List(col1, col2)
+  val columns   = List(col1, col2)
   val dataframe = Dataframe(columns)
 
   test("getColumnByIndex") {
-    val col1obtained = dataframe.getColumnByIndex(0)
-    val col2obtained = dataframe.getColumnByIndex(1)
+    val col1obtained       = dataframe.getColumnByIndex(0)
+    val col2obtained       = dataframe.getColumnByIndex(1)
     val negativeIndexError = dataframe.getColumnByIndex(-1)
-    val tooLargeIndex = dataframe.getColumnByIndex(2)
+    val tooLargeIndex      = dataframe.getColumnByIndex(2)
 
     assertEquals(col1obtained, Right(col1))
     assertEquals(col2obtained, Right(col2))
@@ -51,16 +51,16 @@ class DataframeTest extends FunSuite {
     val obtainedSlice1 = dataframe.getSliceByIndices(0, 1)
 
     val obtainedSlice2 = dataframe.getSliceByIndices(0)
-    val expected2 = dataframe.copy(columns.head :: Nil)
+    val expected2      = dataframe.copy(columns.head :: Nil)
 
     val obtainedSlice3 = dataframe.getSliceByIndices(1)
-    val expected3 = dataframe.copy(columns.tail)
+    val expected3      = dataframe.copy(columns.tail)
 
     val obtainedSlice4 = dataframe.getSliceByIndices(-1, 0, 1)
-    val expected4 = Left(NegativeIndex)
+    val expected4      = Left(NegativeIndex)
 
     val obtainedSlice5 = dataframe.getSliceByIndices(0, 1, 2, 3)
-    val expected5 = Left(TooLargeIndex)
+    val expected5      = Left(TooLargeIndex)
 
     assertEquals(obtainedSlice1, Right(dataframe))
     assertEquals(obtainedSlice2, Right(expected2))
@@ -78,18 +78,18 @@ class DataframeTest extends FunSuite {
 
   test("mapHeadersToString") {
     val longestStringForEachColumn = dataframe.getMaxStringLengthForEachColumn
-    val obtained = dataframe.mapHeadersToString(longestStringForEachColumn)
-    val expected = "protein  carbs"
+    val obtained                   = dataframe.mapHeadersToString(longestStringForEachColumn)
+    val expected                   = "protein  carbs"
 
     assertEquals(obtained, expected)
   }
 
   test("mapColumnsToRowStrings") {
     val longestStringForEachColumn = dataframe.getMaxStringLengthForEachColumn
-    val obtained = dataframe.mapColumnsToRowStrings(longestStringForEachColumn)
-    val expected = List(
+    val obtained                   = dataframe.mapColumnsToRowStrings(longestStringForEachColumn)
+    val expected                   = List(
       "10 grams 55 g",
-      "12 g     56 g"
+      "12 g     56 g",
     )
 
     assertEquals(obtained, expected)

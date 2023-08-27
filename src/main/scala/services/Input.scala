@@ -13,7 +13,7 @@ object Input {
       Try(Files readString (Path of filename))
         .getOrElse(throw new RuntimeException("File does not exist"))
   }
-  def fromStdIn: Input = new Input {
+  def fromStdIn: Input                  = new Input {
     override def load: String =
       scala.io.Source.stdin.getLines
         .mkString("\n")

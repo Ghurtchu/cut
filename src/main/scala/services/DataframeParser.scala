@@ -17,13 +17,13 @@ object DataframeParser {
     (input: String) => {
       val lines = input.split("\n")
       when(lines.length > 1) {
-        val headers = extractHeaders(lines, delimiter)
-        val rows = extractRows(lines, delimiter, headers.indices)
+        val headers                 = extractHeaders(lines, delimiter)
+        val rows                    = extractRows(lines, delimiter, headers.indices)
         val isRowsDimensionsCorrect =
           rows.forall(_.values.length == headers.length)
         when(isRowsDimensionsCorrect) {
-          val columns = extractColumns(headers, rows)
-          val columnCount = lines.length - 1 // minus header
+          val columns                    = extractColumns(headers, rows)
+          val columnCount                = lines.length - 1 // minus header
           val isColumnsDimensionsCorrect =
             columns.forall(_.values.length == columnCount)
           when(isColumnsDimensionsCorrect) {

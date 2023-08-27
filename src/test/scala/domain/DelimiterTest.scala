@@ -11,8 +11,14 @@ class DelimiterTest extends FunSuite {
   }
 
   test("check fromStringOrElse") {
-    assertEquals(Delimiter.fromStringOrElse("gibberish", Delimiter.Tab), Delimiter.Tab)
-    assertEquals(Delimiter.fromStringOrElse(",", Delimiter.Tab), Delimiter.Comma)
+    assertEquals(
+      Delimiter.fromStringOrElse("gibberish", Delimiter.Tab),
+      Delimiter.Tab,
+    )
+    assertEquals(
+      Delimiter.fromStringOrElse(",", Delimiter.Tab),
+      Delimiter.Comma,
+    )
   }
 
 }

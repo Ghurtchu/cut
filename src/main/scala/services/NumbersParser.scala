@@ -11,7 +11,7 @@ object NumbersParser {
 
   def fromRegex(regex: Regex): NumbersParser =
     (numbers: String) => {
-      val nums = numbers.split(regex.repr)
+      val nums       = numbers.split(regex.repr)
       val numsParsed = nums.flatMap(n => Try(n.toInt).toOption)
 
       when(numsParsed.length == nums.length)(numsParsed.toList)

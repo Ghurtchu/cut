@@ -9,7 +9,7 @@ class RowTest extends FunSuite {
       List(
         Cell(Position.from(0, 0).get, "chicken"),
         Cell(Position.from(1, 0).get, "beef"),
-        Cell(Position.from(2, 0).get, "veal")
+        Cell(Position.from(2, 0).get, "veal"),
       ),
     ).toString
 

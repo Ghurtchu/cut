@@ -12,20 +12,20 @@ object Main {
           columnNumbers,
           LoadInput.fromFile(filename).load,
         )
-      case s"-f$columnNumbers" :: filename :: Nil =>
+      case s"-f$columnNumbers" :: filename :: Nil                       =>
         buildDataframeAndThenProcess(
           Delimiter.Tab,
           columnNumbers,
           LoadInput.fromFile(filename).load,
         )
-      case s"-d$delimiterStr" :: s"-f$columnNumbers" :: Nil =>
+      case s"-d$delimiterStr" :: s"-f$columnNumbers" :: Nil             =>
         buildDataframeAndThenProcess(
           Delimiter
             .fromStringOrElse(delimiterStr, Delimiter.Tab),
           columnNumbers,
           LoadInput.fromStdIn.load,
         )
-      case _ => println("Incorrect usage, please refer to manual")
+      case _                                                            => println("Incorrect usage, please refer to manual")
     }
 
   private def buildDataframeAndThenProcess(
@@ -53,7 +53,7 @@ object Main {
               .getSliceByIndices(indices: _*)
               .fold(error => println(error.msg), _.display())
           }
-      case None =>
+      case None        =>
         Try(columnNumbers.toInt).toOption
           .fold(println("Input was not a number")) { index =>
             dataframe

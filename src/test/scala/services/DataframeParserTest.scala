@@ -45,14 +45,14 @@ class DataframeParserTest extends FunSuite {
   }
 
   test("ofComma") {
-    val parser = DataframeParser.ofComma
+    val parser   = DataframeParser.ofComma
     val obtained = parser(dataframeStringCsv)
 
     assertEquals(obtained, Some(dataframe))
   }
 
   test("ofTab") {
-    val parser = DataframeParser.ofTab
+    val parser   = DataframeParser.ofTab
     val obtained = parser(dataframeStringCsv.replace(",", "\t"))
 
     assertEquals(obtained, Some(dataframe))
