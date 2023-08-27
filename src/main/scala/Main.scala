@@ -25,7 +25,7 @@ object Main {
           columnNumbers,
           LoadInput.fromStdIn.load,
         )
-      case _                                                            => println("Incorrect usage, please refer to manual")
+      case _ => println("Incorrect usage, please refer to manual")
     }
 
   private def buildDataframeAndThenProcess(

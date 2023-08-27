@@ -43,8 +43,8 @@ final case class Dataframe(columns: List[Column]) extends AnyVal {
   def display(): Unit = {
     val maxStringLengthForEachColumn: Map[Column, Int] =
       getMaxStringLengthForEachColumn
-    val headersAsString                                = mapHeadersToString(maxStringLengthForEachColumn)
-    val rowsAsStrings                                  =
+    val headersAsString = mapHeadersToString(maxStringLengthForEachColumn)
+    val rowsAsStrings   =
       mapColumnsToRowStrings(maxStringLengthForEachColumn)
 
     (headersAsString :: rowsAsStrings)

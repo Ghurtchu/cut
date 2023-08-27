@@ -78,16 +78,16 @@ class DataframeTest extends FunSuite {
 
   test("mapHeadersToString") {
     val longestStringForEachColumn = dataframe.getMaxStringLengthForEachColumn
-    val obtained                   = dataframe.mapHeadersToString(longestStringForEachColumn)
-    val expected                   = "protein  carbs"
+    val obtained = dataframe.mapHeadersToString(longestStringForEachColumn)
+    val expected = "protein  carbs"
 
     assertEquals(obtained, expected)
   }
 
   test("mapColumnsToRowStrings") {
     val longestStringForEachColumn = dataframe.getMaxStringLengthForEachColumn
-    val obtained                   = dataframe.mapColumnsToRowStrings(longestStringForEachColumn)
-    val expected                   = List(
+    val obtained = dataframe.mapColumnsToRowStrings(longestStringForEachColumn)
+    val expected = List(
       "10 grams 55 g",
       "12 g     56 g",
     )
