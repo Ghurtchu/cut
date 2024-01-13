@@ -14,7 +14,7 @@ object DataframeParser {
   def ofTab: DataframeParser = of(Delimiter.Tab)
 
   def of(delimiter: Delimiter): DataframeParser =
-    (input: String) => {
+    input => {
       val lines = input.split("\n")
       when(lines.length > 1) {
         val headers = extractHeaders(lines, delimiter)
@@ -22,8 +22,8 @@ object DataframeParser {
         val isRowsDimensionsCorrect =
           rows.forall(_.values.length == headers.length)
         when(isRowsDimensionsCorrect) {
-          val columns                    = extractColumns(headers, rows)
-          val columnCount                = lines.length - 1 // minus header
+          val columns     = extractColumns(headers, rows)
+          val columnCount = lines.length - 1 // minus header
           val isColumnsDimensionsCorrect =
             columns.forall(_.values.length == columnCount)
           when(isColumnsDimensionsCorrect) {

@@ -6,6 +6,7 @@ sealed trait Regex {
 }
 
 object Regex {
+
   case object Comma extends Regex { override def repr: String = "," }
   case object Space extends Regex { override def repr: String = " " }
 

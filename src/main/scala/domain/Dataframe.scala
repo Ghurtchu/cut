@@ -5,6 +5,7 @@ import domain.Dataframe.ColumnRetrievalError.{NegativeIndex, TooLargeIndex}
 import services.DataframeParser
 
 final case class Dataframe(columns: List[Column]) extends AnyVal {
+
   def getColumnByCell(cell: Cell): Option[Column] =
     columns.find(_.values.contains(cell))
 
@@ -14,7 +15,7 @@ final case class Dataframe(columns: List[Column]) extends AnyVal {
     else
       Right {
         val header = columns(index).header
-        val cells  = columns.flatMap {
+        val cells = columns.flatMap {
           _.values
             .filter(_.position.columnIndex.value == index)
         }
@@ -22,9 +23,7 @@ final case class Dataframe(columns: List[Column]) extends AnyVal {
         Column(header, cells)
       }
 
-  def getSliceByIndices(
-    indices: Int*,
-  ): Either[ColumnRetrievalError, Dataframe] = {
+  def getSliceByIndices(indices: Int*): Either[ColumnRetrievalError, Dataframe] = {
     val columnsOrErrors = indices.map(getColumnByIndex)
 
     columnsOrErrors
@@ -44,7 +43,7 @@ final case class Dataframe(columns: List[Column]) extends AnyVal {
     val maxStringLengthForEachColumn: Map[Column, Int] =
       getMaxStringLengthForEachColumn
     val headersAsString = mapHeadersToString(maxStringLengthForEachColumn)
-    val rowsAsStrings   =
+    val rowsAsStrings =
       mapColumnsToRowStrings(maxStringLengthForEachColumn)
 
     (headersAsString :: rowsAsStrings)
@@ -87,6 +86,7 @@ final case class Dataframe(columns: List[Column]) extends AnyVal {
 }
 
 object Dataframe {
+
   sealed trait ColumnRetrievalError { def msg: String }
 
   object ColumnRetrievalError {
